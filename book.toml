@@ -6,7 +6,7 @@ src = "."
 title = "Theorem Proving in Lean 4"
 
 [build]
-build-dir = "out"
+build-dir = "docs"
 
 [output.html]
 git-repository-url = "https://github.com/westluke/theorem_proving_in_lean4"
