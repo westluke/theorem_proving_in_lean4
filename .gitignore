@@ -1,7 +1,5 @@
 *.olean
 /_target
 /leanpkg.path
-out/
-quiz/
 .vs/
 .vscode/

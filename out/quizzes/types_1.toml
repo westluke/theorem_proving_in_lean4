@@ -1,0 +1,59 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`fun (x : Nat) => (fun (t : Type 2) => x)`
+"""
+prompt.distractors = [
+    "`Nat`",
+    "`Type → Type 3 → Type`",
+    "`Nat → Type 3 → Nat`"
+]
+answer.answer = "`Nat → Type 2 → Nat`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat → Type 2 → Nat`
+"""
+prompt.distractors = [
+    "`Type 2`",
+    "`Nat → Type 3 → Nat`",
+    "`Type → Type 3 → Type`",
+]
+answer.answer = "`Type 3`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which choice is equivalent to the following expression?
+
+`fun (x : Nat) => fun (y : Nat) => x + y`
+"""
+prompt.distractors = [
+    "`fun x y => x + y`",
+    "`fun (x y : Nat) => x + y`",
+    "neither",
+]
+answer.answer = "both"
+prompt.answerIndex = 2
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which expression has the following type?
+
+`(Nat → Nat) → (Nat → Nat)`
+"""
+prompt.distractors = [
+    "`fun (x y z : Nat) => x + y + z`",
+    "`fun (fx fy : Nat → Nat) => (fx 0) + (fx 1)`",
+    "`(fun (x : Nat) => x + 1) ((fun (x : Nat) => x + 2) 3)`",
+]
+answer.answer = "`fun (fx : Nat → Nat) => fun (y : Nat) => fx y`"
+
+
+

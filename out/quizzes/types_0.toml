@@ -1,0 +1,43 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat.add 3 4`
+"""
+prompt.distractors = [
+    "`Bool`",
+    "`Nat → Nat → Nat`",
+    "`Nat → Nat`"
+]
+answer.answer = "`Nat`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat.add`
+"""
+prompt.distractors = [
+    "`Bool`",
+    "`Nat → Nat`",
+    "`Nat`"
+]
+answer.answer = "`Nat → Nat → Nat`"
+answer.context = "Nat.add accepts two natural numbers as input and produces their sum."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat.add 3`
+"""
+prompt.distractors = [
+    "`Bool`",
+    "`Nat → Nat → Nat`",
+    "`Nat`"
+]
+answer.answer = "`Nat → Nat`"
+answer.context = "When given only one input, `Nat.add` produces a function waiting for a second input to add to the first."
