@@ -1,0 +1,21 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following are true statements about the differences between the `theorem` and `def` keywords in Lean?
+
+1. There is no difference between `theorem` and `def`.
+2. Proofs must be written using `theorem`.
+3. `theorem` can only be used to define proofs.
+4. Proofs written with `def` can be expanded, while those written with `theorem` cannot.
+5. Proofs cannot be expanded, and definitions written with `theorem` cannot be expanded.
+"""
+prompt.distractors = [
+    "Statement 1 only",
+    "Statements 2 and 3 only",
+    "None of them",
+    "All of them",
+]
+answer.answer = "Statement 5 only"
+prompt.answerIndex = 2
+answer.context = "Does this get printed?"
+

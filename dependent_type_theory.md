@@ -140,6 +140,8 @@ numbers. Conversely, if you have ``p : Nat × Nat``, then you can write
 ``p.1 : Nat`` and ``p.2 : Nat``. This gives you a way of extracting
 its two components.
 
+{{#quiz quizzes/types_0.toml}}
+
 ## Types as objects
 
 One way in which Lean's dependent type theory extends simple type
@@ -427,6 +429,8 @@ expressions and proofs. It is less efficient than ``#eval``, and
 treats all foreign functions as opaque constants. You will learn later
 that there are some other differences between the two commands.
 -->
+
+{{#quiz quizzes/types_1.toml}}
 
 ## Definitions
 

@@ -359,6 +359,8 @@ Note that it is often useful to use numeric unicode subscripts,
 entered as ``\0``, ``\1``, ``\2``, ..., for hypotheses, as we did in
 this example.
 
+{{#quiz quizzes/pat_0.toml}}
+
 Propositional Logic
 -------------------
 
