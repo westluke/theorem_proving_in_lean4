@@ -1,0 +1,72 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+def f (x : Nat) : Nat :=
+  let a := x + 2
+  a
+```
+What is the result of `#eval f 2`?
+"""
+prompt.distractors = [
+    "`2`",
+    "`8`",
+    "`6`"
+]
+answer.answer = "`4`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+def f (x : Nat) : Nat :=
+  let a := x + 2
+  let b := a + 2
+  a + b
+```
+What is the result of `#eval f 2`?
+"""
+prompt.distractors = [
+    "`4`",
+    "`6`",
+    "`8`",
+]
+answer.answer = "`10`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+def f (x : Nat) : Nat :=
+  let x := 3
+  x + x
+```
+What is the result of `#eval f 2`?
+"""
+prompt.distractors = [
+    "`2`",
+    "`5`",
+    "`4`",
+]
+answer.answer = "`6`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+def f (x : Nat) : Nat :=
+  let x := x + 2
+  x
+```
+What is the result of `#eval f 2`?
+"""
+prompt.distractors = [
+    "`2`",
+    "`3`",
+    "`6`",
+]
+answer.answer = "`4`"

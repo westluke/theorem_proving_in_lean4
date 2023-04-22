@@ -359,7 +359,7 @@ Note that it is often useful to use numeric unicode subscripts,
 entered as ``\0``, ``\1``, ``\2``, ..., for hypotheses, as we did in
 this example.
 
-{{#quiz quizzes/pat_0.toml}}
+{{#quiz tomls/ch2_propositions_and_proofs/working_with_propositions_as_types.toml}}
 
 Propositional Logic
 -------------------
@@ -404,6 +404,8 @@ defined in Lean's library in the file ``Prelude.core`` (see
 [importing files](./interacting_with_lean.md#importing-files) for more information on the library
 hierarchy), and each connective comes with its canonical introduction
 and elimination rules.
+
+{{#quiz tomls/ch2_propositions_and_proofs/propositional_logic_0_order_of_operations.toml}}
 
 ### Conjunction
 
@@ -522,6 +524,8 @@ example (h : p ∧ q) : q ∧ p ∧ q :=
 
 This is often useful as well.
 
+{{#quiz tomls/ch2_propositions_and_proofs/propositional_logic_1_conjunction.toml}}
+
 ### Disjunction
 
 The expression ``Or.intro_left q hp`` creates a proof of ``p ∨ q``
@@ -585,6 +589,8 @@ example (h : p ∨ q) : q ∨ p :=
 
 Once again, you should exercise judgment as to whether such
 abbreviations enhance or diminish readability.
+
+{{#quiz tomls/ch2_propositions_and_proofs/propositional_logic_2_disjunction.toml}}
 
 ### Negation and Falsity
 
@@ -676,6 +682,8 @@ theorem and_swap : p ∧ q ↔ q ∧ p :=
 example (h : p ∧ q) : q ∧ p := (and_swap p q).mp h
 ```
 
+{{#quiz tomls/ch2_propositions_and_proofs/propositional_logic_4_logical_equivalence.toml}}
+
 Introducing Auxiliary Subgoals
 --------
 
@@ -719,6 +727,8 @@ Writing ``suffices hq : q`` leaves us with two goals. First, we have
 to show that it indeed suffices to show ``q``, by proving the original
 goal of ``q ∧ p`` with the additional hypothesis ``hq : q``. Finally,
 we have to show ``q``.
+
+{{#quiz tomls/ch2_propositions_and_proofs/introducing_auxiliary_subgoals.toml}}
 
 Classical Logic
 ---------------
@@ -815,6 +825,8 @@ such contexts without relying on excluded middle.
 
 The full list of axioms that are used in Lean to support classical
 reasoning are discussed in [Axioms and Computation](./axioms_and_computation.md).
+
+{{#quiz tomls/ch2_propositions_and_proofs/classical_logic.toml}}
 
 Examples of Propositional Validities
 ------------------------------------
@@ -920,6 +932,8 @@ example (p q : Prop) : ¬(p ∧ ¬q) → (p → q) :=
       (fun hq : q => hq)
       (fun hnq : ¬q => absurd (And.intro hp hnq) h)
 ```
+
+{{#quiz tomls/ch2_propositions_and_proofs/examples_of_propositional_validities.toml}}
 
 Exercises
 ---------

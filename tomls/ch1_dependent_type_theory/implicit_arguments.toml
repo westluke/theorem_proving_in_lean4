@@ -1,0 +1,23 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why is it a bad idea to just make all of the arguments to a function implicit, and let Lean figure them all out?
+"""
+prompt.distractors = [
+    "A function without explicit arguments is effectively a constant.",
+    "A function without explicit arguments is impossible to invoke.",
+    "The function won't appear to be a function in a `#check` statement."
+]
+answer.answer = "Lean won't usually be able to figure out what the implicit arguments should be."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following is a good reason to leave an argument as implicit?
+"""
+prompt.distractors = [
+    "When the function's name makes it obvious what that argument should be.",
+    "When it's the first argument to a function.",
+    "When the output type of the function is dependent on that argument."
+]
+answer.answer = "When its value can be inferred from the other arguments."

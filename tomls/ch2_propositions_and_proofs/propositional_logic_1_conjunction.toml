@@ -1,0 +1,35 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The following Lean snippet is a proof of which proposition?
+
+```
+let x := And.intro a b
+And.intro (And.intro (And.left x) b) c
+```
+"""
+prompt.distractors = [
+    "`((a ∧ b) ∧ b) ∧ c`",
+    "`a ∧ c`",
+    "`a ∧ b ∧ c`",
+    "`(a ∨ b) ∨ c`"
+]
+answer.answer = "`(a ∧ b) ∧ c`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following Lean snippet?
+```
+variable (p q r : Prop)
+variable (f0 : p) (f1 : q) (f2 : r)
+def proof : (p ∧ q) ∧ r := ⟨f0, f1, f2⟩
+```
+"""
+prompt.distractors = [
+    "The `And.intro` constructor expects 2 arguments, but 3 were provided.",
+    "Lean doesn't know how to infer the type of `⟨f0, f1, f2⟩`.",
+    "Lean doesn't know which `And` constructor this anonymous constructor is supposed to invoke.",
+]
+answer.answer = "Nested constructions can only be written as a flat list when they associate to the right, but the type of `proof` shows association to the left."
+context = "This snippet could be fixed by changing the type annotation of `proof` to `p ∧ q ∧ r`, or by changing the definition to `⟨⟨f0, f1⟩, f2⟩`."

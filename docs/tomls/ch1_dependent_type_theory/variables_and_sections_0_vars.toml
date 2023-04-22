@@ -1,0 +1,128 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following statements accurately describes the function of the `variable` keyword?
+"""
+prompt.distractors = [
+    "`variable` introduces a constant term of the specified type into the environment.",
+    "Unlike most terms in Lean, terms introduced through `variable` can be freely mutated as the program runs.",
+    "`variable (x : α)` informs the program that the value named `x` is subject to change without notice.",
+    "`variable (x : α)` causes all following definitions to require an additional input of type `α`.",
+]
+answer.answer = "`variable (x : α)` marks the name `x`. When subsequent definitions refer to `x`, they become functions whose first argument is `(x : α)`."
+context = """
+`variable (x : α)` does *not* mean that `x` can be mutated, because there are no mutable variables in Lean, and because it does not create any actual term.
+
+Assuming `variable (x : α)` appears in a file, if a subsequent definition `f` of type `β` refers to that `x` (and that is the only variable appearing in the definition of `f`), then `f` gets rewritten as a definition of type `(x : α) → β`. When invoked as `f c`, where `c` is some term of type `α`, all instances of that `x` in the definition of `f` are replaced with `c`.
+"""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v : Nat)
+#check v + 3
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "`Type`",
+    "This snippet contains an error.",
+    "`Nat → Nat`",
+]
+answer.answer = "`Nat`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v : Nat)
+def a := v + 3
+#check a
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "This snippet contains an error.",
+    "`Nat → Nat → Nat`",
+    "`Nat`",
+]
+answer.answer = "`Nat → Nat`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v : Nat)
+def a := v + v + 3
+#check a
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "This snippet contains an error.",
+    "`Nat → Nat → Nat`",
+    "`Nat`",
+]
+answer.answer = "`Nat → Nat`"
+context = "Variables used in a definition's body multiple times still only show up as a single argument."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v0 : Nat) (v1 : Bool)
+def f0 := if v1 then 1 else 2
+def f1 := v0 + f0 false
+#check f1
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "`Nat`",
+    "`Bool → Nat → Nat`",
+    "`Nat → Bool → Nat`",
+]
+answer.answer = "`Nat → Nat`"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v0 : Bool) (v1 : Nat → Nat)
+def f (arg : Nat) := if v0 then (v1 arg) else 3
+#check f
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "`Nat → (Nat → Nat) → Nat`",
+    "`Bool → (Nat → Nat) → Nat`",
+    "`(Nat → Nat) → Bool → Nat → Nat`",
+]
+answer.answer = "`Bool → (Nat → Nat) → Nat → Nat`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean code snippet:
+```
+variable (v0 : Bool) (v1 : Nat → Nat)
+def f (arg : Nat) := (v1 arg) + (if v0 then (v1 arg) else 3)
+#check f
+```
+Which type is printed by the `#check` statement?
+"""
+prompt.distractors = [
+    "`Nat → (Nat → Nat) → Nat`",
+    "`Bool → (Nat → Nat) → Nat`",
+    "`(Nat → Nat) → Bool → Nat → Nat`",
+]
+answer.answer = "`Bool → (Nat → Nat) → Nat → Nat`"
+context = "When a definition uses multiple variables, they show up as arguments using the order in which they were declared, not the order they appear in the definition's body!"

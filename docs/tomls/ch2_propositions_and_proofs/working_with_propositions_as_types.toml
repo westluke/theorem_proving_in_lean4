@@ -1,0 +1,69 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following statements, if any, accurately describe the differences between the `theorem` and `def` keywords in Lean?
+"""
+prompt.distractors = [
+    "There is no difference between `theorem` and `def`.",
+    "Proofs must be written using `theorem`.",
+    "`theorem` can only be used to define proofs.",
+    "Proofs written with `def` can be expanded, while those written with `theorem` cannot.",
+]
+answer.answer = [
+    "Proofs cannot be expanded, and definitions written with `theorem` cannot be expanded.",
+    "`theorem` is effectively the same as `def`, except that definitions made with `theorem` are tagged as irreducible."
+]
+context = "Proofs *can* be written using `def`, but they'll still be irreducible. `theorem` can be used to define things other than proofs, and those definitions will still be irreducible."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The `axiom` keyword lets you posit the existence of a proof of any proposition. This may lead to inconsistencies if you use it on empty propositions, such as `False`.
+
+The `variable` keyword similarly lets you use hypothetical terms of any type. Why can't `variable` also lead to inconsistencies?
+"""
+prompt.distractors = [
+    "The `variable` keyword only lets you use nonempty types / propositions.",
+    "Names introduced with the `variable` keyword can only be used in functions, not in proofs.",
+    "Names introduced with the `variable` keyword mark mutable terms, so if they cause an inconsistency they can just be changed to a consistent value."
+]
+answer.answer = "`variable (x : α)` only provides definitions with the *illusion* of working with a constant `x` of type `α` appearing in the environment - in fact, those definitions become functions that require an argument `x` of type `α`."
+context = "`variable (x : α)` doesn't introduce anything into the environment, it just marks some definitions so that they require an input of type `α`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The following term is a proof of which proposition?
+
+`fun (x : p → q) => fun (y : p) => x y`
+"""
+prompt.distractors = [
+    "`p → q`",
+    "`q → p`",
+    "`q → p → q`",
+    "`p → q → p`",
+    "`p → q → p → q`",
+    "`p → (p → q) → q`",
+    "`(((p → q) → p) → q)`"
+]
+answer.answer = "`(p → q) → p → q`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`fun (y : p) (x : p → q) => x y`
+"""
+prompt.distractors = [
+    "`p → q`",
+    "`q → p`",
+    "`q → p → q`",
+    "`p → q → p`",
+    "`p → q → p → q`",
+    "`(((p → q) → p) → q)`",
+    "`(p → q) → p → q`)`"
+]
+answer.answer = "`p → (p → q) → q`"
+
+

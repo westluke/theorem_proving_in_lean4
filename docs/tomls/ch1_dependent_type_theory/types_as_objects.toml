@@ -1,0 +1,28 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat → Nat`
+"""
+prompt.distractors = [
+    "`Nat → Nat`",
+    "`Nat`",
+    "This is not a valid Lean expression"
+]
+answer.answer = "`Type`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`Nat → Type 2 → Nat`
+"""
+prompt.distractors = [
+    "`Type 2`",
+    "`Nat → Type 3 → Nat`",
+    "`Type → Type 3 → Type`",
+]
+answer.answer = "`Type 3`"
+context = "If a type contains `Type n_0, Type n_1, Type n_2, ... ` as subexpressions, and `m` is the max of `n_0, n_1, ..., ` then the type has type `Type m+1`."

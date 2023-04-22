@@ -1,0 +1,50 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following code snippet?
+```
+section alpha
+    section beta
+        variable (v : Nat)
+        def f := v + 3
+    end alpha
+end beta
+
+#eval f 7
+```
+"""
+prompt.distractors = [
+    "`v + 3` is an invalid expression, since `v` is actually a function.",
+    "`f` appears in the `#eval` statement on line 8, even though `f` goes out of scope when its section ends.",
+    "There's nothing wrong with this snippet.",
+]
+answer.answer = "Nested sections must be closed in the reverse order that they were opened, which wasn't done here."
+context = "Definitions don't disappear when a section is closed, and `v+3` is a valid expression since `v` represents some natural number. Nested sections DO have to be closed in reverse order - otherwise they wouldn't really be nested!"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following code snippet?
+```
+section alpha
+    variable (v0 : Nat)
+    def f0 := v0 + 10
+    section beta
+        variable (v1 : Nat)
+        def f1 := v0 * v1
+    end beta
+    def f2 := v1 + 2
+end alpha
+
+#eval f2 3
+```
+"""
+prompt.distractors = [
+    "The definition of `f1` is invalid, since `v0` belongs to section `alpha`, not section `beta`.",
+    "`v0 + 10` is an invalid expression, since `v0` is actually a function.",
+    "`f2` appears in the `#eval` statement on line 9, even though `f2` goes out of scope when its section ends.",
+    "There's nothing wrong with this snippet.",
+    "Nested sections must be closed in the reverse order that they were opened, which wasn't done here."
+]
+answer.answer = "The definition of `f2` uses the variable `v1`, which is not in scope on line 8."
+context = "Variables remain in scope in subsections of the current section."

@@ -1,0 +1,72 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The following Lean snippet demonstrates a convenient alternative to writing which expression?
+```
+example : P :=
+  have name : Q := subproof
+  proof
+```
+"""
+prompt.distractors = [
+    "`(fun name => subproof) proof`",
+    "`(fun subproof => proof) name`",
+    "`(fun name => proof name) subproof`",
+    "`subproof proof`",
+    "`proof subproof`"
+]
+answer.answer = "`(fun name => proof) subproof`"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The following Lean snippet demonstrates a convenient alternative to writing which expression?
+```
+example : P := 
+  suffices name : Q := subproof
+  proof
+```
+"""
+prompt.distractors = [
+    "`(fun name => proof) subproof`",
+    "`(fun name => subproof) proof`",
+    "`(fun subproof => proof) name`",
+    "`(fun name => proof name) subproof`",
+    "`proof subproof`"
+]
+answer.answer = "`subproof proof`"
+context = "`name` is a proof that `Q` does indeed suffice to show `P`. In other words, it's a proof of the implication `Q → P`. `proof` is then a proof of `Q`. `subproof` can then be applied to `proof` to form a proof of `P` with `subproof proof`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+In the following Lean snippet, what is the type of `subproof`?
+```
+example : P := 
+  suffices name : Q := subproof
+  proof
+```
+"""
+prompt.distractors = [
+    "`Q`",
+    "`P`",
+    "`P → Q`",
+    "It's impossible to determine without more information.",
+]
+answer.answer = "`Q → P`"
+context = "See the answer of the previous question for details."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What are the downsides of a `have` statement that doesn't name its subproof? Select all that apply.
+"""
+prompt.distractors = [
+    "The subproof cannot be directly referred to later in the proof.",
+    "At most one unnamed `have` statement can appear in a proof."
+]
+answer.answer = [
+    "Without a descriptive name, it's harder to remember what the subproof actually means.",
+    "Later unnamed `have` statements will hide previous ones, so they can't be directly referred to."
+]

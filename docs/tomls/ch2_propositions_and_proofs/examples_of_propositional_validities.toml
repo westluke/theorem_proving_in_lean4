@@ -1,0 +1,13 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following statements accurately describe the differences between the `sorry` keyword and the underscore (`_`) in Lean?
+"""
+prompt.distractors = [
+    "Both can provide terms of arbitrary type, but only `sorry` will warn you about its use.",
+    "`sorry` prints a record of how it produced a term, while an underscore doesn't.",
+]
+answer.answer = [
+    "An underscore prompts Lean to try to fill in a term with an actual term - `sorry` makes Lean *cheat* and just *say* it produced a term.",
+    "Filling in a term with an underscore can fail, while filling it in with `sorry` can't."
+]

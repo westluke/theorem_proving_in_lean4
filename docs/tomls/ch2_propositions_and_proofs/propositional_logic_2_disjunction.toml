@@ -1,0 +1,35 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why can't anonymous constructor notation be used to introduce disjunctions? In other words, why is the following Lean snippet incorrect?
+```
+variable (p q : Prop)
+variable (f0 : p)
+
+def x : p ∨ q := ⟨q, f0⟩
+```
+"""
+prompt.distractors = [
+    "Anonymous constructors only work to make conjunctions.",
+    "`q` and `f0` should be flipped in the definition.",
+    "The definition needs to include a proof of `p` as well."
+]
+answer.answer = "Anonymous constructor notation only works to make structures, which have exactly one constructor. `Or` has multiple constructors, and is therefore not a structure."
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+example : p ∨ q → r :=
+    fun x => x.elim _ _
+```
+What should replace the first and second underscores to complete the proof?
+"""
+prompt.distractors = [
+    "`x`, and either a proof of `p` or a proof of `q`.",
+    "`x`, and a proof `p ∨ q → r`.",
+    "A proof of `p` and a proof of `p → r`, or a proof of `q` and a proof of `q → r`."
+]
+answer.answer = "A proof of `p → r` and a proof of `q → r`."

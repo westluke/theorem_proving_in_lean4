@@ -1,0 +1,34 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following expressions is equivalent to the one shown below?
+
+`¬ a ∧ ¬ b ∨ c → a → c ↔ d → e`
+"""
+prompt.distractors = [
+"`(¬(a ∧ ¬(b ∨ c))) → (a → ((c ↔ d) → e))`",
+"`(((((¬a) ∧ (¬b)) ∨ c) → a) → c) ↔ (d → e)`",
+"`¬((((a ∧ (¬b)) ∨ c) → (a → c)) ↔ (d → e))`",
+"`((((¬a) ∧ ((¬b) ∨ c)) → (a → c)) ↔ (d → e)`"
+]
+answer.answer = "`((((¬a) ∧ (¬b)) ∨ c) → (a → c)) ↔ (d → e)`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Fill in the blank:
+
+The term `fun (x : p) => (y : q)` is an ___ of the term `p → q`.
+"""
+prompt.distractors = ["elimination"]
+answer.answer = "introduction"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Fill in the blank:
+
+Assuming `f` is defined to be `fun (x : p) => (y : q)`, `f c` is an ___ of the term `p → q`
+"""
+prompt.distractors = ["introduction"]
+answer.answer = "elimination"

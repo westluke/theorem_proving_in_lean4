@@ -1,0 +1,16 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following statements employ classical, non-constructivist reasoning?
+"""
+prompt.distractors = [
+    "When it rains, Shriram brings an umbrella to the office. He didn't bring an umbrella, so it must not be raining.",
+    "Tim and Tom come to school together, or not at all. Tim's here, so Tom must be too.",
+    "Writing too much code makes my head hurt. My head hurts right now, so I must be writing too much code.",
+    "My dog starts barking when she hasn't had breakfast. She's napping right now, so it must not be the case that she hasn't had breakfast."
+]
+answer.answer = [
+    "My dog starts barking when she hasn't had breakfast. She's napping right now, so she must have had breakfast.",
+    "Alyssa always goes either to the gym or the library in the morning, and I didn't see her at the gym, so she must be in the library."
+]
+

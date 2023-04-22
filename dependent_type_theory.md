@@ -140,7 +140,7 @@ numbers. Conversely, if you have ``p : Nat × Nat``, then you can write
 ``p.1 : Nat`` and ``p.2 : Nat``. This gives you a way of extracting
 its two components.
 
-{{#quiz quizzes/types_0.toml}}
+{{#quiz tomls/ch1_dependent_type_theory/simple_type_theory.toml}}
 
 ## Types as objects
 
@@ -285,6 +285,7 @@ def F.{u} (α : Type u) : Type u := Prod α α
 #check F    -- Type u → Type u
 ```
 
+{{#quiz tomls/ch1_dependent_type_theory/types_as_objects.toml}}
 
 ## Function Abstraction and Evaluation
 
@@ -430,7 +431,7 @@ treats all foreign functions as opaque constants. You will learn later
 that there are some other differences between the two commands.
 -->
 
-{{#quiz quizzes/types_1.toml}}
+{{#quiz tomls/ch1_dependent_type_theory/function_abstraction_and_evaluation.toml}}
 
 ## Definitions
 
@@ -622,6 +623,10 @@ def foo := let a := Nat; fun x : a => x + 2
   def bar := (fun a => fun x : a => x + 2) Nat
 -/
 ```
+
+{{#quiz tomls/ch1_dependent_type_theory/local_definitions_0.toml}}
+{{#quiz tomls/ch1_dependent_type_theory/local_definitions_1.toml}}
+
 # Variables and Sections
 
 Consider the following three function definitions:
@@ -701,6 +706,9 @@ to name a section, which is to say, you can use an anonymous
 ``section`` / ``end`` pair. If you do name a section, however, you
 have to close it using the same name. Sections can also be nested,
 which allows you to declare new variables incrementally.
+
+{{#quiz tomls/ch1_dependent_type_theory/variables_and_sections_0_vars.toml}}
+{{#quiz tomls/ch1_dependent_type_theory/variables_and_sections_1_sections.toml}}
 
 # Namespaces
 
@@ -823,6 +831,8 @@ same as a ``section ... end`` block. In particular, if you use the
 ``variable`` command within a namespace, its scope is limited to the
 namespace. Similarly, if you use an ``open`` command within a
 namespace, its effects disappear when the namespace is closed.
+
+{{#quiz tomls/ch1_dependent_type_theory/namespaces.toml}}
 
 ## What makes dependent type theory dependent?
 
@@ -1108,3 +1118,5 @@ made explicit.
 Notice that now the first ``#check`` command gives the type of the
 identifier, ``id``, without inserting any placeholders. Moreover, the
 output indicates that the first argument is implicit.
+
+{{#quiz tomls/ch1_dependent_type_theory/implicit_arguments.toml}}

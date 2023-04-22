@@ -1,0 +1,52 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following expressions is a proof of `(p ↔ q ∧ r) → p → q`?"
+"""
+prompt.distractors = [
+    "`fun (hpqr : p ↔ q ∧ r) (hp : p) => And.intro (hpqr.mp hp) hp`",
+    "`fun (hp : p) (hpqr : p ↔ q ∧ r) => And.left (hpqr.mp hp)`",
+    "`fun (hpqr : p ↔ q ∧ r) => fun (hp : p) => And.right (hpqr.mp hp)`",
+]
+answer.answer = "`fun (hpqr : p ↔ q ∧ r) (hp : p) => And.left (hpqr.mp hp)`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following expressions is a proof of `(p ∨ q) → ¬p → ¬q → r ` ?"
+"""
+prompt.distractors = [
+"""
+```
+fun (hpq : p ∨ q) (hnp : ¬p) (hnq : ¬q) =>
+  ((hpq.elim 
+    (fun hp => False.elim (hnp hp))
+    (fun hq => False.elim (hnq hq))
+  ) : (p ∨ q) → ¬p → ¬q → r)
+```
+""",
+"""
+```
+fun (hpq : p ∨ q) (hnp : ¬p) (hnq : ¬q) =>
+  And.intro (absurd p hnp) (absurd q hnq)
+```
+""",
+"""
+```
+fun (hpq : p ∨ q) (hnp : ¬p) (hnq : ¬q) =>
+  ((hpq.elim 
+    (fun hp => False.intro (hnp hp))
+    (fun hq => False.intro (hnq hq))
+  ) : r)
+```
+"""
+]
+answer.answer = """
+```
+fun (hpq : p ∨ q) (hnp : ¬p) (hnq : ¬q) =>
+  ((hpq.elim 
+    (fun hp => False.elim (hnp hp))
+    (fun hq => False.elim (hnq hq))
+  ) : r)
+```
+"""

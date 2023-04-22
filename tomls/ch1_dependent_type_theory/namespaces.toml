@@ -1,0 +1,56 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet:
+```
+namespace alpha
+    namespace beta
+        def x := 3
+    end beta
+
+    #check _
+end alpha
+```
+Which of the following names could be used in the check statement on line 6 to refer to the definition made on line 3?
+"""
+prompt.distractors = [
+    "`x`",
+    "`alpha.x`",
+]
+answer.answer = [
+    "`alpha.beta.x`",
+    "`beta.x`",
+]
+context = "Definitions can be referred to through their fully-qualified names, even inside of the namespace in which they are defined."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following become inaccessible or ineffective outside of the namespace / section in which they are made?
+"""
+prompt.distractors = [
+    "definitions",
+]
+answer.answer = [
+    "variables",
+    "options changed through the `set_option` keyword",
+    "names introduced through the `open` keyword"
+]
+context = "Universe levels introduced through the `universe` keyword also become inaccessible outside of the namespace / section in which they are defined."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What are the differences between sections and namespaces?
+"""
+prompt.distractors = [
+    "Sections can't be nested, but namespaces can.",
+    "Variables declared in a namespace can be accessed from outside by reopening the namespace; sections do not allow this.",
+    "Only definitions made in a namespace can be imported.",
+    "Opening a namespace automatically imports all definitions made in that namespace in other files."
+]
+answer.answer = [
+    "Namespaces require names, while sections can be nameless.",
+    "Namespaces modify the names of the definitions they contain; sections do not.",
+]
+context = "Variables are always inaccessible outside of the section / namespace block in which they are defined. Namespaces are basically just sections that prepend an extra name to definitions - they don't affect importing."
