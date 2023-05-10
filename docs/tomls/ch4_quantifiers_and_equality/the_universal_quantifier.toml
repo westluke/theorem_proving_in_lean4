@@ -1,0 +1,210 @@
+# For rewrite: make it clear that "arrow type" is a synonym for "function type" for some people,
+# but then only use one or the other!! Silly to alternate between them.
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is an arrow type, in Lean? Select all that apply.
+"""
+prompt.distractors = [
+    "A dependent tuple type.",
+    "Any type belonging to `Type u`, where `u ≥ 2`"
+]
+answer.answer = [
+    "A function type.",
+    "Any type that can be written as `(x : _) → _`"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+How is the `∀` symbol used in Lean? Select all that apply.
+"""
+prompt.distractors = [
+    "To introduce existential propositions.",
+    "To create tuple types where the types of later elements in the tuple can depend on the values of previous elements."
+]
+answer.answer = [
+    "To construct propositions that are universal quantifications.",
+    "To construct function types where the types of later arguments can depend on the values of previous arguments."
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What are the differences between the following types? Select all that apply.
+```
+∀ x : Nat, x = 3
+(x : Nat) → x = 3
+```
+"""
+prompt.distractors = [
+    "The first has type `Prop`, while the second has type `Type`.",
+    "The first takes a proposition as input, while the second takes a `Nat` as input.",
+    "The first is a universal quantification, while the second is an ordinary implication."
+]
+answer.answer = ["There are no differences."]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why does the expression `∀ {x : Prop} → Prop`" produce an error?"
+"""
+prompt.distractors = [
+    "Lean does not permit quantifying over `Prop`, since that introduces circularity errors.",
+    "The target type of a universal quantification cannot be a `Prop`.",
+    "The binding of a universal quantification cannot be implicit."
+]
+answer.answer = "The binding in a universal quantification must be followed by a comma, not an arrow symbol."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which options are equivalent to the Lean expression `{x : Nat} → (p : Nat → Prop) → p x`? Select all that apply."
+"""
+prompt.distractors = [
+    "`∀ x : Nat, ∀ p : Nat → Prop, p x`",
+    "`∀ {x : Nat}, ∀ {p : Nat → Prop}, p x`",
+    "`(x : Nat) → ∀ (p : Nat → Prop), p x`"
+]
+answer.answer = [
+    "`∀ {x : Nat}, ∀ (p : Nat → Prop), p x`",
+    "`{x : Nat} → ∀ (p : Nat → Prop), p x`"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the Lean function defined below.
+```
+def f : ∀ (x y z : Nat), x + y = z := sorry
+```
+What is the type of `f 1 2`?
+"""
+prompt.distractors = [
+    "`∀ (x y z : Nat), x + y = z`",
+    "`x + y = z`",
+    "`1 + 2 = 3`"
+]
+answer.answer = "`∀ (z : Nat), 1 + 2 = z`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Stylistically, when is it preferable to use the `∀` symbol to construct a function type, instead of the usual `→` symbol?
+"""
+prompt.distractors = [
+    "When the target type of the function has type `Prop`.",
+    "When the target type of the function depends on the values of its arguments.",
+    "When the target type of the function does NOT depend on the values of its arguments.",
+    "When the function is an implication whose input and target types have type `Prop`."
+]
+answer.answer = "When the target type of the function depends on the values of its arguments, AND the target type has type `Prop`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What are the differences between these two functions? Select all that apply.
+```
+def f  (x : Nat) := x == 3
+def g: (x : Nat) →  x == 3 := sorry
+```
+"""
+prompt.distractors = [
+    "`f` proves that the given `x` is equal to 3, while `g` proves that EVERY `x` is equal to 3.",
+    "`f` takes a natural number as input, while `g` produces a natural number as output."
+]
+answer.answer = [
+    "`f` is a predicate that produces the proposition that the given `x` is equal to 3, while `g` produces a *proof* that the given `x` is equal to 3.",
+    "Given any `x : Nat`, `f x` is the type of `g x`."
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What do variables like `?m1` mean in `#check` output?
+"""
+prompt.distractors = [
+    "This is a bug in Lean.",
+    "They are *metavariables* whose values Lean has successfully inferred.",
+    "They are unbound parameters."
+    
+]
+answer.answer = "They represent *metavariables* whose values Lean cannot automatically infer without more information."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the value of `imax 1 2`?
+"""
+prompt.distractors = [
+    "`Prop`",
+    "0",
+    "1",
+]
+answer.answer = "2"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the value of `imax 0 2`?
+"""
+prompt.distractors = [
+    "`Prop`",
+    "0",
+    "1",
+]
+answer.answer = "2"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the value of `imax 2 0`?
+"""
+prompt.distractors = [
+    "`Prop`",
+    "2",
+    "1",
+]
+answer.answer = "0"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the Lean expression `Nat → Type 2 → Nat`?
+"""
+prompt.distractors = [
+    "`Prop`",
+    "`Type`",
+    "`Type 1`",
+    "`Type 2`"
+]
+answer.answer = "Type 3"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the Lean expression `Nat → Prop → Type 2`?
+"""
+prompt.distractors = [
+    "`Prop`",
+    "`Type`",
+    "`Type 1`",
+    "`Type 2`"
+]
+answer.answer = "Type 3"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+# What is the type of the Lean expression `Nat → Type 2 → Prop`?
+"""
+prompt.distractors = [
+    "`Type`",
+    "`Type 1`",
+    "`Type 2`",
+    "`Type 3"
+]
+answer.answer = "`Prop`"
+
+

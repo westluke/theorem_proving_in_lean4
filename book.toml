@@ -15,3 +15,4 @@ git-repository-url = "https://github.com/westluke/theorem_proving_in_lean4"
 lean = "# "
 
 [preprocessor.quiz]
+default-language = "lean"

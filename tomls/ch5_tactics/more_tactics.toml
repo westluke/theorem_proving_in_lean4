@@ -1,0 +1,105 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the difference between the `cases` and `case` tactics?
+"""
+prompt.distractors = [
+  "The `case` tactic selects a goal to prove. The `cases` tactic does the same, but can select multiple goals simultaneously.",
+  "The `case` tactic focuses the selected goal, while the `cases` tactic does not.",
+  "The `cases` tactic splits a proof into one case for each possible constructor of the current goal, while `case` selects one such constructor."
+
+]
+answer.answer = "The `cases` tactic splits a proof into one case for each possible way the given hypothesis could have been constructed, while `case` selects one such case to prove."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following proof?
+```
+example : (p ∨ q) → ¬p → q := by
+  intro hpq hnp
+  cases hpq with
+  | inl hp := apply False.elim (hnp hp)
+  | inr _ := assumption
+```
+"""
+prompt.distractors = [
+  "There shouldn't be any `|` symbols.",
+  "The `|` symbols should be replaced with the visually identical `∣`, which can be produced by typing `\\mid` when using the Lean extension in VS Code.",
+  "The `with` keyword shouldn't be there.",
+  "It's invalid to use `_` in the place of a variable binding."
+]
+answer.answer = "The `:=` should be replaced with `=>` in the two branches."
+
+context = """
+In Lean, `:=` is used for definitions and assignments, while `=>` is for case selection after some sort of match construct. `=>` is also used to construct function expressions, because of the implicit match in the argument binding. It is valid to use `_` in place of a variable name in a binding expression - this is done when a name is syntactically required to bind a value, but you don't actually need the value to have an accessible name. In this case, since `Or.inr` takes one argument, it must be followed by some name in the `cases` branch, even though we don't need to refer to it later.
+
+Lastly, there is indeed some trickiness with the `|` character in Lean, but it is not relevant in this example. The `|` and `∣` characters are not the same, despite appearing identical in most fonts - the first can be typed directly from most keyboards by pressing Shift and `\\`, while the second can be produced by typing `\\mid` in VS Code with the Lean extension activated. The first is used in match expressions, while the second is generally used for the 'divides' operator, where `2 ∣ 4` is the proposition saying that 2 evenly divides 4.
+"""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+In tactic mode, `cases` and `match` are quite similar, but not identical. Which of the following accurately describe their differences? Select all that apply.
+"""
+prompt.distractors = [
+  "`cases` uses `=>` to select an arm, while `match` uses `:=`.",
+  "`cases` can only deconstruct propositions, while `match` can deconstruct arbitrary expressions."
+]
+answer.answer = [
+  "`cases` has an unstructured form, while `match` must always be structured using the `with` keyword and `|` symbols.",
+  "`cases` allows you to omit the prefixes on constructors for the type of the object being deconstructed, e.g. using `inl` instead of `Or.inl`."
+]
+context = ""
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following (incorrect) proof:
+```
+example (a b : Prop) : a → b → a ∧ b := by
+  intro ha
+  intro hb
+  apply And.intro
+  assumption
+```
+At the end of which line could `<:>` be inserted to make this proof correct?
+"""
+prompt.distractors = [
+  "Line 2",
+  "Line 3",
+  "Line 5",
+]
+answer.answerIndex = 2
+answer.answer = "Line 4" 
+
+  [[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why might you use cases on a proof of a conjunction? Select all that apply.
+"""
+prompt.distractors = [
+  "To distinguish between the different ways the conjunction might have been constructed.",
+  "There is no reason to do this."
+]
+answer.answer = "To bind the proofs of the conjuncts to variables."
+context = "Conjunctions have only one constructor, which requires a proof of both conjuncts. So distinguishing between cases is irrelevant here."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+  The `contradiction` tactic can prove which kind of goal?
+"""
+prompt.distractors = [
+  "`contradiction` can only prove negations.",
+  "`contradiction` can only prove implications.",
+  "`contradiction` can only prove `False`."
+
+]
+answer.answer = "`contradiction` can prove any goal."
+context = "`contradiction` can prove any goal *if it can be used at all*. It can only be used when there is indeed a contradiction among the hypotheses in your context."
+
+#-/

@@ -176,6 +176,8 @@ we can define predicates on ``α`` by quantifying over all predicates
 on ``α``, which is exactly the type of circularity that was once
 considered problematic.
 
+{{#quiz tomls/ch4_quantifiers_and_equality/the_universal_quantifier.toml}}
+
 Equality
 --------
 
@@ -339,6 +341,8 @@ reasoning is supported by a term rewriter, a simplifier, and other
 kinds of automation. The term rewriter and simplifier are described
 briefly in the next section, and then in greater detail in the next
 chapter.
+
+{{#quiz tomls/ch4_quantifiers_and_equality/equality.toml}}
 
 Calculational Proofs
 --------------------
@@ -549,6 +553,8 @@ example (x y : Nat) : (x + y) * (x + y) = x * x + y * x + x * y + y * y :=
 example (x y : Nat) : (x + y) * (x + y) = x * x + y * x + x * y + y * y :=
   by simp [Nat.mul_add, Nat.add_mul, Nat.add_assoc]
 ```
+
+{{#quiz tomls/ch4_quantifiers_and_equality/calculational_proofs.toml}}
 
 The Existential Quantifier
 --------------------------
@@ -829,6 +835,9 @@ example : (∃ x, p x → r) ↔ (∀ x, p x) → r :=
               show False from hnap hap)))
 ```
 
+
+{{#quiz tomls/ch4_quantifiers_and_equality/existential_quantifier.toml}}
+
 More on the Proof Language
 --------------------------
 
@@ -909,6 +918,8 @@ example (n : Nat) : Nat := ‹Nat›
 ```
 
 Later, we show how you can extend the proof language using the Lean macro system.
+
+{{#quiz tomls/ch4_quantifiers_and_equality/more_on_the_proof_language.toml}}
 
 Exercises
 ---------

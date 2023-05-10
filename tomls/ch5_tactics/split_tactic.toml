@@ -1,0 +1,5 @@
+Look at previous shortened proof, try these variants (not testing split, only combinators)
+
+dont test split directly, doesn't make much sense without being able to see context. instead test first, and more complex combinators.
+
+fill this in later, i think.

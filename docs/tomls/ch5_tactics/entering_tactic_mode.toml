@@ -1,0 +1,86 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+example : ∀ x : Nat, ¬(x=3) → ¬(x=4) → ¬(x=3) ∨ ¬(x=4) := by
+    apply _
+    sorry
+```
+Which of the below proofs can be `apply`'d on line 2 without throwing an error? Select all that apply.
+"""
+prompt.distractors = [
+    "`def h0 : ∀ x : Nat, ∀ p : Prop, ¬(x=3) → ¬p → ¬(x=3) ∨ ¬p := sorry`",
+    "`def h1 : ∀ x : Nat, ¬(x=3) ∨ ¬(x=4) → ¬(x=4) → (x=3) := sorry`",
+    "`def h2 : ∀ x : Nat, ¬(x=3) → ¬(x=4) → ¬(x=3) := sorry`",
+    "`def h3 : ∀ p q : Prop, p → q → p ∨ q := sorry`",
+    "`def h4 : ∀ p q : Prop, ¬p ∨ ¬q → ¬p → ¬q := sorry`",
+    "`def h5 : ∀ p q : Prop, ¬p → ¬p ∨ q := sorry`",
+    "`def h6 : ∀ p q0 q1 : Prop, p → q → ¬p ∨ ¬(q0 ∨ q1) := sorry`",
+]
+prompt.answerIndex = []
+answer.answer = []
+context = "Trick question! None of `h3 - h6` can be applied since the first input to the goal proposition is a `Nat`, while none of those proofs take a `Nat` input at any point. `h0 ` doesn't work because it requires `p` of type `Prop`, which doesn't appear in the stated goal. `h1` and `h2` don't work because their result type doesn't match the result type of the goal (which is a disjunction)."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following theorems can be `apply`d to a proof goal of `∀ p q : Prop, ¬(p ∧ q) → ¬p ∨ ¬q`?
+"""
+prompt.distractors = [
+    "`def h0 : ∀ x : Nat, ∀ p : Prop, ¬(x=3) → ¬p → ¬(x=3) ∨ ¬p := sorry`",
+    "`def h1 : ∀ x : Nat, ¬(x=3) ∨ ¬(x=4) → ¬(x=4) → (x=3) := sorry`",
+    "`def h2 : ∀ x : Nat, ¬(x=3) → ¬(x=4) → ¬(x=3) := sorry`",
+    "`def h4 : ∀ p q : Prop, ¬p ∨ ¬q → ¬p → ¬q := sorry`",
+    "`def h6 : ∀ p q0 q1 : Prop, p → q → ¬p ∨ ¬(q0 ∨ q1) := sorry`",
+]
+answer.answer = [
+    "`def h3 : ∀ p q : Prop, p → q → p ∨ q := sorry`",
+    "`def h5 : ∀ p q : Prop, ¬p → ¬p ∨ q := sorry`"
+]
+
+context = "`h6` can't be applied since it isn't necessarily the case that `q` matches the form `¬(q0 ∨ q1)`."
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the difference between sequencing tactics with newlines and with semicolons?
+"""
+prompt.distractors = [
+    "Tactics sequenced with semicolons are applied in reverse order from tactics applied with semicolons.",
+    "Tactics sequenced with semicolons must each apply to distinct goals.",
+    "A sequence of tactics separated by semicolons are all applied to the same goal."
+]
+answer.answer = "Sometimes one looks better than the other - otherwise, there's no difference."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following Lean proof?
+```
+example : ∀ p q : Prop, p → q → p ∧ q := by
+  intro p q hp hq
+  apply And.intro
+  case right → exact hq
+  case left → exact hp
+```
+"""
+prompt.distractors = [
+    "Line 2 introduces too many hypotheses.",
+    "`And.elim` should be `apply`d instead of `And.intro`.",
+    "The `left` case should be solved before the `right` case."
+]
+answer.answer = "The `→` symbols on lines 4 and 5 should be replaced with `=>`."
+
+#def h0 : ∀ p q : Prop, p → q → p ∨ q := sorry
+#def h0 : ∀ p q : Prop, ¬p ∨ ¬q → ¬(p ∧ q) := sorry
+#def h0 : ∀ x : Nat, ∀ p : Prop, ¬(x=3 ∧ p) → ¬(x=3) ∨ ¬p := sorry
+#def h0 : ∀ x : Nat, ¬(x=3) ∨ ¬(x=4) → ¬(x=3 ∧ x=4) := sorry
+#def h0 : ∀ x : Nat, ¬(x=3 ∧ x=4) → ¬(x=3) := sorry
+#def h0 : ∀ p q : Prop, ¬p → ¬p ∨ q := sorry
+#def h0 : ∀ p q0 q1 : Prop, ¬p ∨ ¬(q0 ∨ q1) := sorry
+
+#-/

@@ -1,0 +1,33 @@
+#check () /-
+
+# Note - this is a surprisingly delicate question to answer, im working on it
+#[[questions]]
+#type = "MultipleChoice"
+#prompt.prompt = """
+#When can we use calc?
+#"""
+#prompt.distractors = []
+#answer.answer = ""
+#context = ""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What exactly is being proved on line 4 of the following calculational proof?
+```
+example (a b c : Prop) : ((a ∧ b) ∧ c) = (b ∧ (c ∧ a)) :=
+  calc
+    ((a ∧ b) ∧ c) = ((b ∧ a) ∧ c) := by simp[And.comm]
+    _ = (b ∧ (a ∧ c)) := by simp [and_assoc]
+    _ = (b ∧ (c ∧ a)) := by simp[And.comm]
+```
+"""
+prompt.distractors = [
+  "`((a ∧ b) ∧ c) = (b ∧ (a ∧ c))`",
+  "`((a ∧ b) ∧ c) = (b ∧ (c ∧ a))`",
+  "`(b ∧ (a ∧ c)) = (b ∧ (c ∧ a))`",
+]
+answer.answer = "`((b ∧ a) ∧ c) = (b ∧ (a ∧ c))`"
+context = ""
+
+#-/

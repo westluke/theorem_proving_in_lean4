@@ -56,17 +56,3 @@ prompt.distractors = [
 ]
 answer.answer = "`Q → P`"
 context = "See the answer of the previous question for details."
-
-[[questions]]
-type = "MultipleChoice"
-prompt.prompt = """
-What are the downsides of a `have` statement that doesn't name its subproof? Select all that apply.
-"""
-prompt.distractors = [
-    "The subproof cannot be directly referred to later in the proof.",
-    "At most one unnamed `have` statement can appear in a proof."
-]
-answer.answer = [
-    "Without a descriptive name, it's harder to remember what the subproof actually means.",
-    "Later unnamed `have` statements will hide previous ones, so they can't be directly referred to."
-]

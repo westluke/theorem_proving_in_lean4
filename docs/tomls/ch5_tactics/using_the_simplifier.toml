@@ -1,0 +1,35 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+
+Which of the following accurately describe differences between `simp` and `rewrite`?
+"""
+prompt.distractors = [
+  "There are no differences.",
+  "`simp` can only take equalities.",
+  "`simp` can only apply lemmas in the forward direction, to avoid infinite looping."
+]
+answer.answer = [
+  "`simp` can apply the given lemmas repeatedly.",
+  "`simp` can apply the given lemmas out of order.",
+  "`simp` might not terminate!"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why might you want to use `simp only`? Select all that apply.
+"""
+prompt.distractors = [
+  "`simp only` is guaranteed to terminate, while `simp` isn't."
+]
+answer.answer = [
+  "It might be faster than a general `simp`.",
+  "It may terminate in situations where a general `simp` over the same lemmas would not.",
+  "It makes it clearer to future readers of your proof what is happening.",
+  "`simp` might do too much, rewriting using `simp` lemmas that you don't want to use."
+]
+
+#-/

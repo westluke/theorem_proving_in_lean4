@@ -1,0 +1,121 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the `.{u}` doing in the following Lean snippet?
+```
+def example.{u} {α : Type u} (a : α) : a = a := rfl
+```
+"""
+prompt.distractors = [
+    "It forces all inputs to `example` to live in the type universe `Type u`.",
+    "It's just another input to `example`.",
+    "It indicates to Lean that this definition relies on a *universe variable* that was previously declared."
+]
+answer.answer = "It declares a *universe variable* that can be used in the definition of `example`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which options are equivalent to the following Lean snippet? Select all that apply.
+```
+universe u
+def example {α : Type u} (a : α) : a = a := rfl
+```
+"""
+prompt.distractors = [
+    "`def example.(u) {α : Type u} (a : α) : a = a := rfl`",
+    "`def example {u : universe} {α : Type u} (a : α) : a = a := rfl`",
+    "`def example (u : universe) {α : Type u} (a : α) : a = a := rfl`"
+]
+answer.answer = [
+    "`def example.{u} {α : Type u} (a : α) : a = a := rfl`"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following Lean snippet? Select all that apply.
+```
+def example.{α} (x : α) : x = x := rfl
+```
+"""
+prompt.distractors = [
+    "The binding for `x` should be implicit."
+]
+answer.answer = [
+    "It is an error to instantiate a universe variable that you don't use in the definition.",
+    "`α` needs to be wrapped in braces - wrapping it in parens is a syntax error.", 
+    "The `.{α}` syntax can only be used for universe variables, but here we're trying to use it as the type of `x`."
+]
+context = ""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following theorems can be proved with the expression `Eq.subst heq`? Select all that apply.
+"""
+prompt.distractors = [
+    "`example {a b x : Nat} (heq : a = b) : x = a ↔ x = b := sorry`",
+    "`example {a b x : Nat} (heq : b = a) : x = a → x = b := sorry`",
+    "`example {a b x : Nat} (heq : b = a) : x = a ↔ x = b := sorry`"
+]
+answer.answer = "`example {a b x : Nat} (heq : a = b) : x = a → x = b := sorry`"
+context = "If `heq` is a proof of `a = b`, then `Eq.subst heq p` proves `p a → p b`, but not the reverse direction."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following theorems can be proved with the expression `heq ▸ has`? Select all that apply.
+"""
+prompt.distractors = [
+    "`example {a b x : Nat} (heq : a = b) (has : x = a) : x = a ↔ x = b := sorry`"
+]
+answer.answer = [
+    "`example {a b x : Nat} (heq : a = b) (has : x = a) : x = b := sorry`",
+    "`example {a b x : Nat} (heq : a = b) (has : x = b) : x = a := sorry`",
+    "`example {a b x : Nat} (heq : b = a) (has : x = a) : x = b := sorry`",
+    "`example {a b x : Nat} (heq : b = a) (has : x = b) : x = a := sorry`"
+]
+context = "The `▸` symbol can also apply `Eq.symm`, as well as `Eq.subst`, when it expands into a proof."
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the difference between `congrArg` and `congrFun`?
+"""
+prompt.distractors = [
+    "`congrArg` can only prove implications, while `congrFun` can prove equalities.",
+    "`congrArg` can prove arbitrary propositions by substituting equal arguments in function call expressions, while `congrFun` can prove arbitrary propositions by substituting equal functions.",
+    "`congrArg` can prove equalities by using both sides as an argument in equal functions, while `congrFun` can prove equalities by applying equal functions to both sides."
+]
+answer.answer = "`congrArg` can prove equalities by substituting equal arguments in function call expressions, while `congrFun` can prove equalities by substituting equal functions."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What advantages do `congr` and its variants have over `Eq.subst` and the `▸` symbol? Select all that apply.
+"""
+prompt.distractors = [
+    "`congr` can prove existential quantifications, while `Eq.subst` cna only prove one-directional implications."
+]
+answer.answer = [
+    "`congrArg` and `congrFun` allow the proof writer to specify their intent more accurately than `Eq.subst` alone.",
+    "`congrArg` and `congrFun` prove equalities and propositional equivalences ('iffs'), while `Eq.subst` can only prove one-directional implications.",
+    "`congr` can substitute two pairs of terms simultaneously - a pair of equal functions and a pair of equal arguments."
+]
+context = ""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following theorems can be proved with the expression `congrArg f heq`?
+"""
+prompt.distractors = [
+    "`example {a b : Nat} (f : Nat → Prop) (heq : a = b) : f a → f b := sorry`",
+]
+answer.answer = [
+    "`example {a b : Nat} (f : Nat → Nat) (heq : a = b) : f a = f b := sorry`",
+    "`example {a b : Nat} (f : Nat → Nat) (heq : a = b) : f b = f a := sorry`",
+    "`example {a b : Nat} (f : Nat → Prop) (heq : a = b) : f a ↔ f b := sorry`",
+]

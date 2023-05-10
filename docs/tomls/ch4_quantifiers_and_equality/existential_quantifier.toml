@@ -1,0 +1,125 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following is a proof of `∃ x : Nat, x = 0`?
+"""
+prompt.distractors = [
+    "`Exists.intro rfl 0`",
+    "`Exists.intro 0`",
+    "`Exists.intro rfl`"
+]
+answer.answer = "`Exists.intro 0 rfl`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+The existential quantification `∃ x y : Nat, x + 1 = y` is equivalent to which of the following expressions?
+"""
+prompt.distractors = [
+    "`∃ x : Nat, ∀ y : Nat, x + 1 = y`",
+    "`∀ x : Nat, ∃ y : Nat, x + 1 = y`",
+    "`∃ x : Nat, ∃ y : Nat, x + 1 = y`"
+]
+answer.answer = "`∃ x : Nat, ∃ y : Nat, x + 1 = y`"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following is a proof of `∃ x y : Nat, x + 1 = y`? Select all that apply.
+"""
+prompt.distractors = [
+    "`Exists.intro 1 (Exists.intro 0 rfl)`",
+    "`Exists.intro 0 1 rfl`",
+    "`Exists.intro (Exists.intro 1 rfl) 0`",
+    "`⟨1, 0, rfl⟩`",
+    "`⟨0, 1, rfl⟩`",
+    "`⟨⟨1, rfl⟩, 0⟩`"
+]
+answer.answer = [
+    "`Exists.intro 0 (Exists.intro 1 rfl)`",
+    "`⟨0, ⟨1, rfl⟩⟩`",
+    "`⟨0, 1, rfl⟩`"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+axiom c : Nat
+example : ∃ (c1 : Nat), c = c1 + 1 := sorry
+```
+Which of the following existential quantifications could be eliminated to prove the example theorem?
+"""
+prompt.distractors = [
+    "`∃ (c c0 : Nat), c = c0 + 1`",
+    "`∃ (c0 : Nat), c - 1 = c0`",
+    "`∃ (c : Nat), c = 1 + 1`",
+]
+answer.answer = "`∃ (c0 : Nat), c = c0 + 1 + 1`"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+axiom c : Nat
+axiom hc : ∃ (c0 : Nat), c = c0 + 1 + 1
+example : ∃ (c1 : Nat), c = c1 + 1 := sorry
+```
+Which of the following proof strategies makes the most sense in proving the example theorem?
+"""
+prompt.distractors = [
+    "Eliminate `hc` using `Exists.elim` to put `c0` in our context, then eliminate the goal to get a `c1` that satisfies the theorem.",
+    "Use `Exists.intro` on `c1` to start constructing the goal, then use `Exists.intro` on `hc` to prove that `c1` is satisfactory.",
+    "Use `Exists.intro` on `c1` to start constructing the goal, then prove that `c1` is satisfactory by eliminating `hc` with `Exists.elim`."
+]
+answer.answer = "Eliminate `hc` using `Exists.elim` to put `c0` in our context, then construct an existential with `c0+1`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+axiom c : Nat
+axiom hc : ∃ (c0 : Nat), c = c0 + 1 + 1
+example : ∃ (c1 : Nat), c = c1 + 1 := sorry
+```
+Which of the following is a valid proof of the example theorem?
+"""
+prompt.distractors = [
+    """ ```
+    Exists.elim (fun c0 hpp =>
+        Exists.intro (c0 + 1) hpp
+    ) hc
+    ``` """,
+    """ ```
+    Exists.elim hc (fun c0 hpp =>
+        Exists.elim hpp (fun c1 hpp2 => rfl)
+    )
+    ``` """,
+    """ ```
+    Exists.intro (c0+1) (Exists.intro (c1+1) rfl)
+    ``` """,
+]
+answer.answer = """ ```
+Exists.elim hc (fun c0 hpp =>
+    Exists.intro (c0 + 1) hpp
+)
+``` """
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following "proofs" demonstrate classical, non-constructive reasoning? Select all that apply.
+"""
+prompt.distractors = [
+    "All of my friends go rock climbing, so I don't have any friend that doesn't go rock climbing.",
+    "There exists a cat that is black, so there exists a cat that is not green."
+
+]
+answer.answer = [
+    "Not all cats meow, so there must exist some cat that doesn't meow.",
+    "I've never met the person who delivers mail to my house, but I do get mail, so they must exist."
+]

@@ -1,0 +1,75 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+`rewrite` can take proofs of what kinds of propositions? Select all that apply.
+"""
+prompt.distractors = [
+  "Implications",
+  "Conjunctions",
+  "Disjunctions",
+  "Inequalities"
+]
+answer.answer = [
+  "Equalities",
+  "Bidirectional implications (iffs)"
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the difference between `rw` and `rewrite`?
+"""
+prompt.distractors = [
+  "There's no difference, `rw` is just a convenient abbreviation.",
+  "`rw` can only rewrite using equalities.",
+  "`rewrite` automatically invokes `simp` as well.",
+  "`rw` automatically invokes `assumption` as well."
+]
+answer.answer = "`rw` can finish a proof with `rfl` after rewriting."
+context = ""
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following (incorrect) proof:
+```
+example : ∀ x : Nat, (1 - 1) * x = 0 := by
+  intro x
+  have : 0 = 1 - 1 := by rfl
+  rw [this]
+  rfl
+```
+How can we fix it?
+"""
+prompt.distractors = [
+  "Replace `rw` with `rewrite`.",
+  "Replace `rfl` with `assumption`.",
+  "Replace `this` with `Eq.symm`."
+]
+answer.answer = "Replace `this` with `←this`."
+context = "The equation `0 = 1 - 1`, when used in `rw`, replaces every `0` with `1-1`, but we want to do the opposite. So we need the left arrow `←`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following (incorrect) proof:
+```
+example : ∀ x : Nat, x + (1-1) = x := by
+  intro x
+  have : 1 - 1 = 0 := by rfl
+  rewrite [this, Nat.add_zero]
+```
+Given that the type of `Nat.add_zero` is `∀ x : Nat, x + 0 = x`, which of the following options would fix the proof? Select all that apply.
+"""
+prompt.distractors = [
+  "Replace `Nat.add_zero` with `←Nat.add_zero`.",
+  "Replace `this` with `←this`"
+]
+answer.answer = [
+  "Replace `rewrite` with `rw`.",
+  "Add `rfl` at the end."
+]
+
+#-/

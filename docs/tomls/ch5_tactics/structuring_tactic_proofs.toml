@@ -1,0 +1,71 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "We can switch between term mode and tactic mode *almost* freely, but not quite. Which of the following short proofs will throw errors due to invalid mixing of the two modes?"
+prompt.distractors = [
+    """ ```
+    example (a b : Prop) : (a ∧ False) ∨ b → b := by
+        intro hor
+        cases hor with
+        | inl hand => exact False.elim (hand.right)
+        | inr b => exact b
+    ``` """,
+
+    """ ```
+    example (a : Prop) : a → a  := by
+        exact (by intro ha; assumption)
+    ``` """
+]
+answer.answer = [
+    """ ```
+    example (a b : Prop) : a ∧ b → b := by
+    intro a b hand; And.right hand
+    ``` """,
+
+    """ ```
+example (a b : Prop) : (a ∧ False) ∨ b → b := by
+    intro hor
+    cases hor with
+    | inl hand => False.elim (hand.right)
+    | inr b => b
+    ``` """,
+
+    """ ```
+example (a : Prop) : a → a  := by
+    (by intro ha; assumption)
+    ``` """,
+]
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What does it mean to "focus" a goal?
+"""
+prompt.distractors = [
+    "The next tactic must solve the goal, or else Lean will throw an error.",
+    "If the goal is a conjunction, Lean separates the conjuncts into multiple new proof goals.",
+    "It's just a figure of speech for mentally concentrating on a single goal."
+]
+answer.answer = "If the goal is not solved by the end of the current block, Lean will throw an error."
+context = "Also, if using a Lean plugin for VS Code, focusing a goal will hide all other goals."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following proof?
+```
+example (a b : Prop) : a → b → a ∧ b := by
+    intro ha hb
+    {apply And.intro; assumption}
+    assumption
+```
+"""
+prompt.distractors = [
+    "Too many hypotheses are introduced on line 2.",
+    "You can't use semicolons inside a bracketed block.",
+    "The `assumption` on line 4 is superfluous.",
+]
+answer.answer = "The focused goal wasn't solved by the end of the bracketed block."
+context = "In this case there is only one goal, which is focused by the bracketed block on line 3. Two uses of `assumption` are needed to close the goal, so the second `assumption` should be moved inside."
+#-/

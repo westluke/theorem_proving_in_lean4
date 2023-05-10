@@ -1,0 +1,8 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Given that semicolons and newlines group tactics equivalently (and right-associatively), this tactic sequence is equal to which of the following?
+"""
+prompt.distractors = []
+answer.answer = ""
+context = ""

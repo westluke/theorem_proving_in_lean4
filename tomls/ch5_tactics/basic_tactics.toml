@@ -1,0 +1,117 @@
+#check 0 /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+How many items can be introduced with `intro` on line 2 in this proof?
+```
+example : ∀ t : Type, ∀ p q : Prop, (∀ x : t, p ∧ q) → (∀ x : t, p) ∧ (∀ x : t, q) := by
+  intro _
+  sorry
+```
+"""
+prompt.distractors = ["1", "2", "3", "5", "6"]
+answer.answer = "4"
+context = "The four hypotheses you can introduce are of types `Type`, `Prop`, `Prop`, and `(∀ x : t, p ∧ q)`."
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the difference between the `intro` and `intros` tactics?
+"""
+prompt.distractors = [
+    "`intro` can only introduce one hypothesis, while `intros` can introduce arbitrarily many.",
+    "`intro` introduces a hypothesis for each identifier given, while `intros` takes no arguments and anonymously introduces all possible hypotheses.",
+    "`intros` does exactly the same thing as `intro`."
+]
+answer.answer = "`intro` introduces a hypothesis for each identifier given. `intros` does the same thing, but if more hypotheses can be introduced after all given identifiers are exhausted, they are anonymously introduced into the context."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why might using the `intros` tactic be a bad idea sometimes? Select all that apply.
+"""
+prompt.distractors = [
+  "Leonardo de Moura counts every usage of `intros` among your sins.",
+  "Inappropriate usage of `intros` can make a proof impossible to complete."
+]
+answer.answer = [
+  "Sometimes you may not want to introduce every possible hypothesis, e.g. in induction proofs.",
+  "Anonymously introduced hypotheses can't be explicitly named later in the proof."
+]
+context = "We'll see in later chapters that it's often useful to keep proof goals in the form of an implication when you want to prove something inductively, since induction tactics will create inductive hypotheses based on the current goal."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the purpose of `unhygienic`?
+"""
+prompt.distractors = [
+  "To disable type checking.",
+  "To make all hypotheses inaccessible.",
+  "To indicate to future readers that this is bad code."
+]
+answer.answer = "To let you name hypotheses that would otherwise be introduced anonymously/inaccessibly, e.g. through `intros`."
+context = "When a hypothesis is introduced without being given a name, it will appear in your context (with a weird symbol next to it, if viewed through something like the VS Code extension) but cannot be explicitly named later in the proof. The `unhygienic` tactic removes this restriction, giving anonymously-introduced hypotheses a default name and letting you use them later. Hypotheses that are shadowed by later hypotheses with the same name also become inaccessible, but `unhygienic` will not help you in that case."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why should `unhygienic` be avoided?
+"""
+prompt.distractors = [
+  "It's dirty, ew.",
+  "Using it, you might accidentally introduce inconsistencies by proving false propositions.",
+  "It's very computationally expensive."
+]
+answer.answer = "The default names chosen for hypotheses could change over time, breaking your proof."
+context = "The default name chosen for a hypothesis introduced anonymously by some tactic could come from an internal name used in the definition of that tactic. Unless you're using `unhygienic` totally unnecessarily, that default name will appear somewhere in your proof. But whoever wrote that tactic might change the internal name in some future update, not expecting any users to even notice the difference. At that point, the default name chosen by Lean for your proof will change, even though your proof continues to use the previous name, which is now unbound and will throw an error."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the Lean snippet below.
+```
+example : ∀ p : Prop, p → ∀ x : Nat, p := by
+  intro _ _ _
+  rename_i a b
+  sorry
+```
+After line 3, what is the name of the hypothesis with type `Nat`?
+"""
+prompt.distractors = [
+  "`p`",
+  "`a`",
+  "`x`",
+  "`Prop`"
+]
+answer.answer = "`b`"
+context = "`rename_i` is kinda funky - using it with `n` names causes it to rename the last `n` inaccessible hypotheses, assigning the names *in order, not in reverse order*. So `rename_i a` and `rename_i a b` will assign different hypotheses to the name `a`."
+
+# Why might you want to use revert? - no, requires knowledge of induction
+# elements of the context will get reverted on line ?
+# Should I quiz on revert at all? It is v confusing. Nah.
+# Generralize - why use it? Can it make unprovable goal here?
+# Same with generalize, at least for now.
+# Note to self - sseeing as induction and inductivec types are so fundamental, they really should be first or second in chapter order.
+
+# Admit vs sorry
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the difference between `admit` and `sorry`?
+"""
+prompt.distractors = [
+  "`sorry` can close multiple goals, while `admit` can only close one.",
+  "`admit` can close multiple goals, while `sorry` can only close one.",
+  "`admit` can only appear at the end of a proof.",
+  "`admit` can be used as a tactic, while `sorry` can only be used as a proof term."
+]
+answer.answer = "There's no meaningful difference."
+context = "`admit` is shorthand for `exact sorry`, although `sorry` is also a valid tactic which does the same thing. `admit` might disappear in future updates of Lean 4."
+
+#-/

@@ -201,6 +201,8 @@ theorem test (p q : Prop) (hp : p) (hq : q) : p ∧ q ∧ p := by
     . exact hp
 ```
 
+{{#quiz tomls/ch5_tactics/entering_tactic_mode.toml}}
+
 Basic Tactics
 -------------
 
@@ -456,6 +458,8 @@ example : 2 + 3 = 5 := by
 Here the ``rewrite`` tactic, abbreviated ``rw``, uses ``h`` to replace
 ``x`` by ``3`` again. The ``rewrite`` tactic will be discussed below.
 
+{{#quiz tomls/ch5_tactics/basic_tactics.toml}}
+
 More Tactics
 ------------
 
@@ -692,6 +696,8 @@ example (p q r : Prop) : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := by
     | Or.inr ⟨hp, hr⟩ => constructor; assumption; apply Or.inr; assumption
 ```
 
+{{#quiz tomls/ch5_tactics/more_tactics.toml}}
+
 Structuring Tactic Proofs
 -------------------------
 
@@ -899,6 +905,8 @@ or
   { <proof of final goal>  }
 ```
 
+{{#quiz tomls/ch5_tactics/structuring_tactic_proofs.toml}}
+
 Tactic Combinators
 ------------------
 
@@ -1019,6 +1027,9 @@ goal, temporarily hiding the others from the scope. So, if ``t``
 ordinarily only effects the current goal, ``focus (all_goals t)`` has
 the same effect as ``t``.
 
+
+{{#quiz tomls/ch5_tactics/tactic_combinators.toml}}
+
 Rewriting
 ---------
 
@@ -1129,6 +1140,8 @@ example (n : Nat) (h : n = 0) (t : Tuple α n) : Tuple α 0 := by
   rw [h] at t
   exact t
 ```
+
+{{#quiz tomls/ch5_tactics/rewriting.toml}}
 
 Using the Simplifier
 --------------------
@@ -1479,6 +1492,8 @@ that `simp_arith` is a shorthand for `simp (config := { arith := true })`.
 example : 0 < 1 + x ∧ x + y + 2 ≥ y + 1 := by
   simp_arith
 ```
+
+{{#quiz tomls/ch5_tactics/using_the_simplifier.toml}}
 
 Split Tactic
 ------------

@@ -1,0 +1,85 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which expression could take the place of `sorry` to complete the proof below?
+```
+example (a x y : Prop) : (a ∧ x) ∨ (a ∧ y) → a := by
+  intro h
+  apply Or.elim h <;> sorry
+```
+"""
+prompt.distractors = [
+  "`apply And.left`",
+  "`(intro disj; assumption)`",
+  "`intro disj; exact And.left disj`",
+]
+answer.answer = "`(intro disj; exact And.left disj)`"
+context = "The parentheses are needed because `<;>` binds more tightly than `;`."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the proof below?
+```
+example (a b c : Prop) : (a ∧ b) ∨ (b ∧ c) → b := by
+  intro hor
+  apply Or.elim hor <;> (intro hand; exact And.right hand)
+```
+"""
+prompt.distractors = [
+  "There are unsolved goals remaining that could be closed with `assumption`.",
+  "The `intro` is invalid on line 3 - there is nothing to be introduced.",
+  "`<;>` cannot be applied after `Or.elim`."
+]
+answer.answer = "`And.right` can be used on the first goal, but not the second."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which expression could take the place of `sorry` to complete the proof below?
+```
+example (a x y : Prop) : (a ∧ x) ∨ (y ∧ a) → a := by
+  intro h
+  apply Or.elim h <;> sorry
+```
+"""
+prompt.distractors = [
+  "`intro disj; exact And.left disj`",
+  "`intro disj; first | exact And.left disj | exact And.right disj`",
+  "`(intro disj; first | assumption | exact And.intro disj)`"
+]
+answer.answer = "`(intro disj; first | exact And.left disj | exact And.right disj)`"
+
+
+# Huh. <;> is basically an associative operator, isn't it.
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following accurately describe the differences between `any_goals` and `all_goals`? Select all that apply.
+"""
+prompt.distractors = [
+  "`any_goals` always succeeds, while `all_goals` succeeds only if its given tactic succeeds on every goal.",
+  "`any_goals` affects at most one goal, while `all_goals` affects all goals (if it succeeds)."
+]
+answer.answer = [
+  "`any_goals` succeeds if its given tactic succeeds on any goal, while `all_goals` requires success on all goals.",
+]
+context = "`any_goals` can work on all goals, just like `all_goals`. The only difference is the failure condition."
+
+#[[questions]]
+#type = "MultipleChoice"
+#prompt.prompt = """
+#Consider the Lean proof below.
+#```
+#```
+#Is it more appropriate to replace the `sorry` on line X with `all_goals` or `any_goals`?
+#should we use all_goaals or any_goals here?
+#"""
+#prompt.distractors = []
+#answer.answer = ""
+#context = ""
+
+#-/
