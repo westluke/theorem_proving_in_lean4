@@ -33,7 +33,6 @@ prompt.prompt = """
 Why might using the `intros` tactic be a bad idea sometimes? Select all that apply.
 """
 prompt.distractors = [
-  "Leonardo de Moura counts every usage of `intros` among your sins.",
   "Inappropriate usage of `intros` can make a proof impossible to complete."
 ]
 answer.answer = [
