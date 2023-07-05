@@ -1,0 +1,12 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+"""
+prompt.distractors = [
+]
+answer.answer = [
+]
+
+#-/

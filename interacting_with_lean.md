@@ -47,6 +47,8 @@ the root of the user's local project. One can also specify imports relative to t
 importing is transitive. In other words, if you import ``Foo`` and ``Foo`` imports ``Bar``,
 then you also have access to the contents of ``Bar``, and do not need to import it explicitly.
 
+{{#quiz tomls/ch6_interacting_with_lean/importing_files.toml}}
+
 More on Sections
 ----------------
 
@@ -203,6 +205,8 @@ namespace, so that whenever the namespace is open, these aliases are
 available. If this command is used outside a namespace, the aliases
 are exported to the top level.
 
+{{#quiz tomls/ch6_interacting_with_lean/more_on_namespaces.toml}}
+
 Attributes
 ----------
 
@@ -318,6 +322,8 @@ this pattern: options can *only* be set locally, which is to say,
 their scope is always restricted to the current section or current
 file.
 
+{{#quiz tomls/ch6_interacting_with_lean/attributes.toml}}
+
 More on Implicit Arguments
 --------------------------
 
@@ -432,6 +438,8 @@ There is a third kind of implicit argument that is denoted with square
 brackets, ``[`` and ``]``. These are used for type classes, as
 explained in [Chapter Type Classes](./type_classes.md).
 
+{{#quiz tomls/ch6_interacting_with_lean/more_on_implicit_arguments.toml}}
+
 Notation
 --------
 
@@ -458,6 +466,8 @@ ability to factor out common boilerplate code into (well-behaved)
 macros and to embed entire custom domain specific languages (DSLs) to
 textually encode subproblems efficiently and readably can be of great
 benefit to both programmers and proof engineers alike.
+
+{{#quiz tomls/ch6_interacting_with_lean/notation.toml}}
 
 ### Notations and Precedence
 
@@ -543,6 +553,8 @@ multiple notations accepting the same longest parse, the choice will
 be delayed until elaboration, which will fail unless exactly one
 overload is type correct.
 
+{{#quiz tomls/ch6_interacting_with_lean/notations_and_precedence.toml}}
+
 Coercions
 ---------
 
@@ -596,6 +608,8 @@ def foo {α : Type u} (x : α) : α := x
 #check @foo
 #print foo
 ```
+
+{{#quiz tomls/ch6_interacting_with_lean/displaying_information.toml}}
 
 Setting Options
 ---------------
@@ -755,6 +769,8 @@ for them as well:
 #check @Eq.subst
 ```
 
+{{#quiz tomls/ch6_interacting_with_lean/using_the_library.toml}}
+
 Auto Bound Implicit Arguments
 -----------------
 
@@ -803,6 +819,8 @@ set_option autoImplicit false
 -- def compose (g : β → γ) (f : α → β) (x : α) : γ :=
 --   g (f x)
 ```
+
+{{#quiz tomls/ch6_interacting_with_lean/auto_bound_implicit_arguments.toml}}
 
 Implicit Lambdas
 ---------------
@@ -885,6 +903,8 @@ The collection is interrupted by nested parentheses. In the following example, t
 #check (Prod.mk · (· + 1))
 -- fun a => (a, fun b => b + 1)
 ```
+
+{{#quiz tomls/ch6_interacting_with_lean/sugar_for_simple_functions.toml}}
 
 Named Arguments
 ---------------
@@ -972,3 +992,5 @@ inferred by Lean, and we want to avoid a sequence of `_`s.
 example (f : Nat → Nat) (a b c : Nat) : f (a + b + c) = f (a + (b + c)) :=
   congrArg f (Nat.add_assoc ..)
 ```
+
+{{#quiz tomls/ch6_interacting_with_lean/named_arguments.toml}}

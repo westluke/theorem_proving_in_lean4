@@ -1,0 +1,22 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet.
+```
+def foo (a : Nat) {b : Nat} {{c : Nat}} {d : Nat} (e : Nat) : Nat := sorry
+```
+What is the type of the expression `foo 1`?
+"""
+prompt.distractors = [
+  "`Nat`",
+  "`{d : Nat} → Nat`",
+  "`{d : Nat} → Nat → Nat`"
+]
+answer.answer = [
+  "`{{c : Nat}} → {d : Nat} → Nat → Nat`"
+]
+
+
+#-/

@@ -1,0 +1,29 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+In the `Init` library, there is a theorem called `Nat.add_left_cancel`. Which of the following options seems most likely to be the type of this theorem?
+"""
+prompt.distractors = [
+  "`∀ (a b : Nat), a * b = b * a`",
+  "`∀ (a b c : Nat), c < b → a + (b - c) = (a + b) - c`",
+  "`∀ (a b c : Nat), a * (b + c) = a * b + a * c`"
+]
+answer.answer = "`∀ (a b c : Nat), a + b = a + c → b = c`"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+In the `Init` library, there is a theorem proving `∀ (a b c : Nat), a - (b + c) = a - b - c`. Which of the following options seems most likely to be the name of this theorem?
+"""
+prompt.distractors = [
+  "`Nat.mul_comm`",
+  "`Nat.add_assoc`",
+  "`List.head_eq`",
+]
+answer.answer = "`Nat.sub_add_eq`"
+
+
+#-/

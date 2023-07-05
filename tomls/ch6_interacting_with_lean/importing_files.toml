@@ -1,0 +1,29 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Assume we're working with a Lean file containing just the line `import Bar.Baz.Blah`. This file runs without errors. Now consider adding the line `import Bar.Baz` to the file. Which of the following is true?
+"""
+prompt.distractors = [
+  "Adding the line `import Bar.Baz` will definitely throw an error.",
+  "Adding the line `import Bar.Baz` will definitely NOT throw an error."
+]
+answer.answer = "Adding the line `import Bar.Baz` might throw an error, or it might not, depending on the contents of the `Bar` directory."
+
+context = "The fact that `import Bar.Baz.Blah` doesn't throw an error means the `Bar/Baz` directory contains a file named `Blah.lean`. However, that doesn't necessarily mean the `Bar` directory contains a file named `Baz.lean`, which is required for `import Bar.Baz` to work."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which of the following libraries is automatically imported by Lean?
+"""
+prompt.distractors = [
+  "`Std`",
+  "`Lean`",
+  "`Lib`",
+  "`Mathlib`"
+]
+answer.answer = "`Init`"
+
+#-/

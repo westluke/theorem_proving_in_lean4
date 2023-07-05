@@ -1,0 +1,46 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why would you ever want to make a `simp` lemma local only? Select all that apply.
+"""
+prompt.distractors = [
+  "The lemma might be correct only within that file, and using it externally could create incorrect proofs.",
+  "The lemma might overwrite an existing `simp` lemma, preventing it from being used during the `simp` tactic."
+]
+answer.answer = [
+  "The lemma might be slow for Lean to check, and you don't want everyone who imports your file to be subjected to slow `simp`s.",
+  "The `simp`lification performed by the lemma might actually make expressions appear more complex in a different context."
+]
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's the point of having a command like `attribute` to add attributes to a definition after the fact? Why not require all attributes to be present at the point of definition? Select all that apply.
+"""
+prompt.distractors = [
+  "There is no point, this is a bad design decision."
+]
+answer.answer = [
+  "Users may want to add attributes to definitions found in a library file they can't change.",
+  "Users may want the attributes to apply to the definition only within a certain section of their file."
+]
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why does it make sense that Lean requires option settings to be local-only?
+"""
+prompt.distractors = [
+  "Lean files should not be dependent in any way on the files they import.",
+  "It doesn't make sense, this is a poor design decision."
+]
+answer.answer = "Users expect imported files to add definitions to their context, NOT to wreak havoc on all their settings."
+
+context = "Since importing a single Lean file could result in thousands of files imported transitively, allowing imported files to change settings would make it near-impossible to be certain of the starting settings in your file."  
+
+#-/

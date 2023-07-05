@@ -1,0 +1,129 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Assume that at the top level of a Lean project there is a directory called `Dir`, containing a file called `Foo.lean`, which contains a definition `x` in the namespace `Bar`. Which of the following Lean snippets correctly accesses that definition of `x`?
+"""
+prompt.distractors = [
+"""```
+import Dir.Foo.Bar.x
+#check x
+```""",
+"""```
+import Dir.Foo
+import Foo.Bar
+#check Bar.x
+```""",
+"""```
+import Dir
+#check Foo.Bar.x
+```""",
+]
+answer.answer = [
+"""
+```
+import Dir.Foo
+#check Bar.x
+```
+"""
+]
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following snippet of Lean code?
+```
+namespace Foo
+def Bar.x
+end Foo
+
+open Bar
+#check x
+```
+"""
+prompt.distractors = [
+  "`Bar` isn't a real namespace, it's just a part of the definition's name, so it can't be opened on line 5 and `x` can't be referred to alone on line 6.",
+  "`Bar` can't be opened as a namespace because it was never explicitly created with the keyword `namespace`.",
+  "Line 6 should use the `_root_` namespace for disambiguation."
+]
+answer.answer = "`Bar` is the wrong namespace on line 5, it should be `Foo.Bar`."
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What's wrong with the following snippet of Lean code?
+```
+namespace Foo.Bar
+def x : Nat := 3
+end Foo.Bar
+
+open Foo
+open Bar
+#check x
+```
+"""
+prompt.distractors = [
+  "Namespaces can't be opened piecemeal - to access `x`, you would need to open the `Foo.Bar` namespace.",
+  "The `namespace` command can't introduce nested namespaces, like `Foo.Bar`, in a single invocation.",
+  "The `open` commands are in the wrong order - they should open `Bar` first, then `Foo`."
+]
+answer.answer = "Nothing!"
+context = "The first `open` introduces the alias `Bar.x` for `Foo.Bar.x`. The second `open` introduces the alias `x` for `Bar.x`, which itself is an alias."
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following snippet of Lean code.
+```
+namespace A
+def x : Nat := 0
+end A
+
+def x : Nat := 1
+
+open A
+#check x
+```
+It's unclear which definition of `x` is being used on line 8. How can we unambiguously make this line refer to the *second* definition?
+"""
+prompt.distractors = [
+  "Replace the `x` with `_root_.A.x`.",
+  "Close the `A` namespace beforehand with `close A`.",
+  "Take advantage of type inference by replacing line 8 with `#check (x : Nat)`."
+]
+answer.answer = "Replace the `x` with `_root_.x`."
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+When might you want to use the `protected` keyword?
+"""
+prompt.distractors = [
+  "When you don't want users importing your file to be able to use or see a particular definition.",
+  "When you want to make a definition that can only be referred to using a fully-disambiguated name with `_root_`."
+]
+answer.answer = "When, within a namespace, you've given a definition a name that's likely to conflict with other names outside that namespace."
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why might you want to use `open hiding` in your code?
+"""
+prompt.distractors = [
+  "When you only want to use a single definition from the relevant namespace.",
+  "When you want to make a definition that will be hidden from code outside your file.",
+]
+answer.answer = "When you want to introduce aliases for all the definitions in a particular namespace, except for a few whose aliases would be the same as other definitions you need in your file."
+  
+#-/

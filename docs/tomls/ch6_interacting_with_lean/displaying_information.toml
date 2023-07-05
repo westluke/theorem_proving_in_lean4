@@ -1,0 +1,18 @@
+
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What are the differences between `#print`, `#eval`, and `#check?` Select all that apply.
+"""
+prompt.distractors = [
+  "Expressions passed to `#eval` cannot contain any functions with implicit parameters, while no such restrictions apply to `#print` or `#check`."
+]
+answer.answer = [
+"`#eval` and `#check` accept an arbitrary expression as input, while `#print` only accepts a single identifier.",
+"`#eval` will reduce the input expression as much as it can, while `#check` and `#print` do not.",
+"`#check` only displays the type of the given expression, while `#print` will also display its definition."
+]
+
+#-/

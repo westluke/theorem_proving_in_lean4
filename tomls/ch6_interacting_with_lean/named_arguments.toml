@@ -1,0 +1,18 @@
+
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why might you use named arguments? Select all that apply.
+"""
+prompt.distractors = [
+  "When you want the arguments to be inferred implicitly."
+]
+answer.answer = [
+  "When a function has many arguments, and you don't want to bother to check their order.",
+  "When you want to explicitly provide just a single argument that was declared implicit.",
+  "When you want to make it clear to future readers of your code what the purpose of a particular input is."
+]
+
+#-/

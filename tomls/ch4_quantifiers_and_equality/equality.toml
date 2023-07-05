@@ -47,7 +47,6 @@ answer.answer = [
     "`α` needs to be wrapped in braces - wrapping it in parens is a syntax error.", 
     "The `.{α}` syntax can only be used for universe variables, but here we're trying to use it as the type of `x`."
 ]
-context = ""
 
 [[questions]]
 type = "MultipleChoice"

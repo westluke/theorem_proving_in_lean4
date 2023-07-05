@@ -1,0 +1,17 @@
+#check () /-
+
+# Which greek characters are reserved by Lean?
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+  Which greek characters are reserved by Lean?
+"""
+prompt.distractors = [
+  "All of them!",
+  "None of them - they can all be reused as variable names.",
+  "All lowercase greek characters."
+]
+answer.answer = "∀, Σ, and λ"
+
+#-/

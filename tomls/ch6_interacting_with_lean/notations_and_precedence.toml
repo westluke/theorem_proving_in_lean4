@@ -1,0 +1,31 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What does the "longest parse rule" mean?
+"""
+prompt.distractors = [
+  "In any given expression involving identifiers, the identifier with the longest name is elaborated first.",
+  "The expression that takes the longest time to parse (in wall-clock time) is elaborated first.",
+]
+answer.answer = "When trying to bind placeholders while parsing a piece of notation, the parser associates with each placeholder the longest piece of syntax possible."
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following snippet of Lean.
+```
+notation:65 lhs:66 " +=+ " rhs:66 => HAdd.hAdd lhs rhs
+#check 1 +=+ 2 +=+ 3
+```
+Why does this throw an error?
+"""
+prompt.distractors = [
+  "`+=+` is not a valid Lean operator.",
+  "Operators defined through the `notation` command must be exactly one character.",
+  "The notation never specified that it operates over arguments of type `Nat`."
+]
+answer.answer = "The precedence values for `lhs` and `rhs` forbid the un-parenthesized chaining of this operator used on line 2."
+
+#-/

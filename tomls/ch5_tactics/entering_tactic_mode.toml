@@ -27,7 +27,13 @@ context = "Trick question! None of `h3 - h6` can be applied since the first inpu
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following theorems can be `apply`d to a proof goal of `∀ p q : Prop, ¬(p ∧ q) → ¬p ∨ ¬q`?
+Consider the following Lean snippet.
+```
+example : ∀ p q : Prop, ¬(p ∧ q) → ¬p ∨ ¬q := by
+    apply _
+    sorry
+```
+Which of the following theorems can be `apply`d on line 2 without throwing an error?
 """
 prompt.distractors = [
     "`def h0 : ∀ x : Nat, ∀ p : Prop, ¬(x=3) → ¬p → ¬(x=3) ∨ ¬p := sorry`",

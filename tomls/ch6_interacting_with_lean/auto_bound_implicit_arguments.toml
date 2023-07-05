@@ -1,0 +1,39 @@
+
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Consider the following Lean snippet:
+```
+def foo.{u, v} {α : Type u} {β : Type v} (f : α → β) (a : α) : β := sorry
+```
+How could we shorten this type declaration using auto bound implicit arguments?
+"""
+prompt.distractors = [
+  "`def foo : ∀ (α β : Type) (f : α → β), α → β := sorry`",
+  "`def foo : (f : α → β) : β := sorry`",
+]
+answer.answer = "`def example : (f : α → β) (a : α) : β := sorry`"
+
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which variables will be auto bound as implicits in this type declaration?
+Select all that apply.
+```
+def foo.{v} (γ : Type v) (f : α → β → γ) (argt : α) (arg : argt) := sorry
+```
+"""
+prompt.distractors = [
+  "`δ`",
+  "`γ`" 
+]
+answer.answer = [
+  "`α`",
+  "`β`",
+]
+#-/

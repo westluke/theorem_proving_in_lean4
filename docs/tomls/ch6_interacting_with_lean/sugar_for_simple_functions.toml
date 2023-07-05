@@ -1,0 +1,38 @@
+#check () /-
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+How could we rewrite this lambda to be shorter?
+```
+fun x y => (x + 3) * y
+```
+"""
+prompt.distractors = [
+  "`(· * ·)`",
+  "`(· + 3)`",
+  "`((· + ·) * ·)`",
+]
+answer.answer = "`((· + 3) * ·)`"
+
+context = "If you want to try this yourself, you can write the `·` symbol in VS Code by typing \"\\.\"."
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the type of the following expression?
+
+`(· * ·)`
+"""
+prompt.distractors = [
+  "`Nat → Nat`",
+  "`(Nat → Nat) → Nat`",
+  "`Nat → Int`",
+]
+answer.answer = "`Nat → Nat → Nat`"
+
+
+
+#-/
